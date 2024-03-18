@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="main.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: radial-gradient(circle, rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url("https://i.ibb.co/nkhrHpd/Picsart-24-03-18-12-44-14-812.jpg");
+        background-size: cover;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .btn {
+        position: relative;
+        padding: 15px 40px;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 22px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+    }
+
+    .btn:hover::before {
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+    }
+
+    .btn:hover {
+        color: #FFD700;
+        border-color: #FFD700;
+    }
+
+    .btn span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .btn:active::before {
+        width: 150%;
+        height: 150%;
+    }
+</style>
+</head>
+<body>
+
+<div class="btn-container">
+    <button onclick="window.open('/pair')" class="btn"><span>Pair Code</span></button>
+    <button onclick="window.open('https://github.com/OVMAR-DEV/JITOSSA.git')" class="btn"><span>GitHub</span></button>
+    <button onclick="window.open('https://t.me/ovmarx')" class="btn"><span>Telegram</span></button>
+    <button onclick="window.open('https://www.instagram.com/ovmar_1')" class="btn"><span>Instagram</span></button>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحركات CSS الرائعة</title>
+<style>
+/* تحركات عنصر div */
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  position: relative;
+  animation: move 2s ease infinite alternate; /* تحرك بدوران مستمر */
+}
+
+/* تحريك العنصر */
+@keyframes move {
+  from {
+    transform: translateX(0px) rotate(0deg);
+  }
+  to {
+    transform: translateX(200px) rotate(360deg);
+  }
+}
+
+/* تأثير ظل */
+.box-shadow {
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+}
+
+/* تأثيرات تحويل */
+.transform-effects {
+  display: flex;
+  justify-content: space-around;
+}
+
+.transform-effects div {
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+  transition: transform 0.5s ease;
+}
+
+.transform-effects div:hover {
+  transform: scale(1.2) rotate(20deg);
+}
+</style>
+</head>
+<body>
+<div class="box"></div>
+<div class="box-shadow"></div>
+<div class="transform-effects">
+  <div></div>
+  <div></div>
+  <div><

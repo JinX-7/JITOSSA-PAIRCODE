@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="pair.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pair with me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("https://i.ibb.co/nkhrHpd/Picsart-24-03-18-12-44-14-812.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Box styles */
+        .box {
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Input container styles */
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .input-container input {
+            width: 70%;
+            border-radius: 20px;
+            background-color: #f8f8f8;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .input-container button {
+            width: 30%;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .input-container button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Centered text styles */
+        .centered-text {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Code styles */
+        #copy {
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #copy:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <i class="fa fa-user fa-3x"></i>
+            <h2 class="centered-text">Pair with me</h2>
+            <p class="centered-text">Link with phone number</p>
+            <p class="centered-text">Enter your number with country code.</p>
+            <div class="input-container">
+                <input type="tel" id="number" placeholder="+212670941551" name="number" maxlength="15">
+                <button id="submit">Enter</button>
+            </div>
+            <p id="waiting-message" class="centered-text" style="display: none;">In process...</p>
+            <div id="pair" class="centered-text"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+    <script>
+        let pairElement = document.getElementById("pair");
+        let submitButton = document.getElementById("submit");
+        let numberInput = document.getElementById("number");
+
+        async function copyToClipboard() {
+            let codeElement = document.getElementById("copy");
+            let codeText = codeElement.innerText;
+            await navigator.clipboard.writeText(codeText.replace('CODE: ', ''));
+            codeElement.innerText = "COPIED";
+            codeElement.style.color = "blue";
+            setTimeout(() => {
+                codeElement.innerText = codeText;
+                codeElement.style.color = "red";
+            }, 500);
+        }
+
+        submitButton.addEventListener("click", async (e) => {
+            e.preventDefault();
+            let pairMessage = document.getElementById("waiting-message");
+            let number = numberInput.value.trim();
+            
+            if (!number) {
+                pairMessage.textContent = "Please enter your phone number with country code.";
+            } else if (number.replace(/[^0-9]/g, "").length < 11) {
+                pairMessage.textContent = "Invalid number format. Please enter a valid phone number.";
+            } else {
+                const cleanedNumber = number.replace(/[^0-9]/g, "");
+                let formattedNumber = cleanedNumber.replace(/(\d{3})(\d{3})(\d{4})/, '+$1 $2 $3');
+                numberInput.value = formattedNumber;
+                numberInput.style.color = "black";
+                pairMessage.textContent = "Please wait for some time...";
+                try {
+                    let response = await axios(`/code?number=${cleanedNumber}`);
+                    let code = response.data.code || "Service Unavailable";
+                    pairMessage.innerHTML = `<span id="copy" onclick="copyToClipboard()">CODE: <span>${code}</span></span>`;
+                } catch (error) {
+                    pairMessage.textContent = "Service Unavailable. Please try again later.";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
