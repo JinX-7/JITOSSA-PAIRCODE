@@ -1,140 +1,138 @@
+/*by JinX-7*/
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pair with Me</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-image: url("https://r2.easyimg.io/dp3z43a4f/picsart_24-03-18_12-44-14-812.jpg"); /* Set the background image */
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pair with Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("https://i.ibb.co/nkhrHpd/Picsart-24-03-18-12-44-14-812.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
+        .container {
+            text-align: center;
+        }
 
-    .box {
-      width: 300px;
-      padding: 20px;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.7); /* Changed background color to black with transparency */
-      border-radius: 20px; /* Increased border radius */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Adjusted box shadow */
-    }
+        .box {
+            width: 300px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* White shadow */
+            position: relative; /* Added position relative for animations */
+            overflow: hidden; /* Hide overflowing content */
+        }
 
-    #text {
-      color: #fff; /* Changed text color to white */
-    }
+        h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
 
-    .input-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
+        h6 {
+            margin-bottom: 30px;
+            color: #ccc; /* Light grey text */
+        }
 
-    .input-container input {
-      border-radius: 20px; /* Adjusted border radius */
-      background: #fff; /* Changed background color */
-      width: 70%;
-      padding: 10px;
-      border: 2px solid #ccc; /* Changed border color */
-      color: #333; /* Changed text color */
-    }
+        input {
+            width: calc(100% - 40px); /* Adjusted width */
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #fff; /* White border */
+            margin-bottom: 20px;
+            color: #fff; /* White text */
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+        }
 
-    .input-container button {
-      padding: 10px 20px;
-      background-color: #007bff; /* Changed button color */
-      color: #fff;
-      border: none;
-      border-radius: 20px; /* Adjusted border radius */
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        input:focus {
+            outline: none; /* Removed default outline on focus */
+            border-color: #3498db; /* Changed border color on focus */
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Added box shadow on focus */
+        }
 
-    .input-container button:hover {
-      background-color: #0056b3; /* Changed button hover color */
-    }
+        button {
+            padding: 10px 20px;
+            background-color: #3498db; /* Blue button */
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Added transition for smoother animation */
+        }
 
-    .social-media {
-      margin-top: 20px;
-    }
+        button:hover {
+            background-color: #2980b7; /* Darker blue on hover */
+        }
 
-    .social-media a {
-      display: inline-block;
-      margin: 0 10px;
-      color: #fff; /* Changed text color */
-      text-decoration: none;
-      font-size: 20px;
-      transition: opacity 0.3s;
-    }
+        #waiting-message {
+            position: absolute; /* Positioned absolute for animations */
+            bottom: 19px; /* Positioned at the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally exactly */
+            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+            /*padding: 0px 0px;*/
+            border-radius: 20px;
+            display: none; /* Hidden by default */
+            color: #fff; /* White text */
+            z-index: 1; /* Ensure it's above other content */
+        }
 
-    .social-media a:hover {
-      opacity: 0.7; /* Added transparency on hover */
-    }
-  </style>
+        #pair {
+            margin-top: 20px; /* Added margin to separate from waiting message */
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
+
+<div class="container">
     <div class="box">
-      <div id="text">
         <i class="fa fa-user"></i>
-        <h3>Link with phone number</h3> <!-- Removed class centered-text -->
+        <h3>Link with phone number</h3>
         <h6>Enter your number with country code.</h6>
         <div class="input-container">
-          <input type="number" id="number" placeholder="Enter your phone number with country code">
-          <button id="submit">Send</button> <!-- Changed button text -->
+            <input type="number" id="number" placeholder="Enter your phone number with country code">
+            <button id="submit">Send</button>
         </div>
-        <div id="waiting-message" style="display: none;">In process...</div> <!-- Removed class centered-text -->
-        <br>
-        <br>
         <main id="pair"></main>
-        <div class="social-media">
-          <a href="https://www.facebook.com/aomar.xx1"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.github.com/OVMAR-DEV"><i class="fab fa-github"></i></a>
-          <a href="https://www.instagram.com/ovmar_1"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
+        <div id="waiting-message">In process...</div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
-  <script>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+<script>
     let submitButton = document.getElementById("submit");
     let phoneNumberInput = document.getElementById("number");
+    let waitingMessage = document.getElementById("waiting-message");
 
     submitButton.addEventListener("click", async (e) => {
-      e.preventDefault();
-      let pairElement = document.getElementById("pair");
-      let waitingMessage = document.getElementById("waiting-message");
+        e.preventDefault();
+        let pairElement = document.getElementById("pair");
 
-      if (!phoneNumberInput.value) {
-        pairElement.innerHTML = '<p style="color: red;">Please enter your phone number with country code.</p>';
-      } else {
-        waitingMessage.style.display = "block";
-        pairElement.innerHTML = ""; // Clear previous result
-        let phoneNumber = phoneNumberInput.value;
-        let { data } = await axios(`/code?number=${phoneNumber}`);
-        let code = data.code || "Service Unavailable";
-        waitingMessage.style.display = "none";
-        pairElement.innerHTML = `<p style="color: green;">Your code: <strong>${code}</strong></p>`;
-      }
+        if (!phoneNumberInput.value) {
+            pairElement.innerHTML = '<p style="color: red;">Please enter your phone number with country code.</p>';
+        } else {
+            waitingMessage.style.display = "block";
+            pairElement.innerHTML = ""; // Clear previous result
+            let phoneNumber = phoneNumberInput.value;
+            let { data } = await axios(`/code?number=${phoneNumber}`);
+            let code = data.code || "Service Unavailable";
+            waitingMessage.style.display = "none";
+            pairElement.innerHTML = `<p style="color: green;">Your code: <strong>${code}</strong></p>`;
+        }
     });
-  </script>
-</body>
+</script>
 
+</body>
 </html>
