@@ -1,5 +1,3 @@
-/*by JinX-7*/
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +27,11 @@
         .box {
             width: 300px;
             padding: 30px;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* White shadow */
-            position: relative; /* Added position relative for animations */
-            overflow: hidden; /* Hide overflowing content */
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Reduced shadow */
+            position: relative;
+            overflow: hidden;
         }
 
         h3 {
@@ -43,54 +41,53 @@
 
         h6 {
             margin-bottom: 30px;
-            color: #ccc; /* Light grey text */
+            color: #ccc;
         }
 
         input {
-            width: calc(100% - 40px); /* Adjusted width */
+            width: calc(100% - 40px);
             padding: 10px;
             border-radius: 20px;
-            border: 1px solid #fff; /* White border */
+            border: 1px solid #fff;
             margin-bottom: 20px;
-            color: #fff; /* White text */
-            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
         }
 
         input:focus {
-            outline: none; /* Removed default outline on focus */
-            border-color: #3498db; /* Changed border color on focus */
-            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); /* Added box shadow on focus */
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
         }
 
         button {
             padding: 10px 20px;
-            background-color: #3498db; /* Blue button */
+            background-color: #3498db;
             color: #fff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Added transition for smoother animation */
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #2980b7; /* Darker blue on hover */
+            background-color: #2980b7;
         }
 
         #waiting-message {
-            position: absolute; /* Positioned absolute for animations */
-            bottom: 19px; /* Positioned at the bottom */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Center horizontally exactly */
+            position: absolute;
+            bottom: 19px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
-            /*padding: 0px 0px;*/
             border-radius: 20px;
-            display: none; /* Hidden by default */
-            color: #fff; /* White text */
-            z-index: 1; /* Ensure it's above other content */
+            display: none;
+            color: #fff;
+            z-index: 1;
         }
 
         #pair {
-            margin-top: 20px; /* Added margin to separate from waiting message */
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -99,14 +96,14 @@
 <div class="container">
     <div class="box">
         <i class="fa fa-user"></i>
-        <h3>Link with phone number</h3>
-        <h6>Enter your number with country code.</h6>
+        <h3>Pair with Phone Number</h3>
+        <h6>Enter your phone number with country code.</h6>
         <div class="input-container">
             <input type="number" id="number" placeholder="Enter your phone number with country code">
             <button id="submit">Send</button>
         </div>
         <main id="pair"></main>
-        <div id="waiting-message">In process...</div>
+        <div id="waiting-message">Processing...</div>
     </div>
 </div>
 
@@ -124,7 +121,7 @@
             pairElement.innerHTML = '<p style="color: red;">Please enter your phone number with country code.</p>';
         } else {
             waitingMessage.style.display = "block";
-            pairElement.innerHTML = ""; // Clear previous result
+            pairElement.innerHTML = ""; 
             let phoneNumber = phoneNumberInput.value;
             let { data } = await axios(`/code?number=${phoneNumber}`);
             let code = data.code || "Service Unavailable";
