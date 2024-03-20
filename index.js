@@ -15,7 +15,7 @@ res.sendFile(__path + '/main.html')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(PORT, () => {
-    console.log(`YoutTube: @DGXeon\nTelegram: xeonbotinc\nGitHub: @DGXeon\nInstsgram: unicorn_xeon13\n\nServer running on http://localhost:` + PORT)
+    console.log(`usergit @JinX-7` + PORT)
 })
 
 module.exports = app
